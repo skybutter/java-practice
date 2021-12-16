@@ -1,2 +1,2 @@
 # java-practice
-Java Practice
+Java Practice Code
