@@ -27,14 +27,14 @@ public class FindPeakElement {
         System.out.println("========");
     }
 
-    static int arr[] = { 1, 3, 20, 4, 1, 0 };
-    static int arr1[] = {5, 10, 20, 15};
-    static int arr2[] = {10, 20, 15, 2, 23, 90, 67};
-    static int arr3[] = { 0, 1, 2, 3, 4};
-    static int arr4[] = { 0, 1, 2, 3};
+    static int[] arr = { 1, 3, 20, 4, 1, 0 };
+    static int[] arr1 = {5, 10, 20, 15};
+    static int[] arr2 = {10, 20, 15, 2, 23, 90, 67};
+    static int[] arr3 = { 0, 1, 2, 3, 4};
+    static int[] arr4 = { 0, 1, 2, 3};
 
     // Solution 1 : Linear Scan
-    public static int findPeakLinearScan(int a[]) {
+    public static int findPeakLinearScan(int[] a) {
         int n = a.length;
         // Handle edge case
         if (n == 1) { // only 1 element in array
@@ -51,7 +51,7 @@ public class FindPeakElement {
     }
 
     // Solution 2 : Binary Search Recursive (Divide and Conquer)
-    public static int findPeakBinarySearch(int a[], int startPos, int endPos) {
+    public static int findPeakBinarySearch(int[] a, int startPos, int endPos) {
         if (startPos == endPos)
             return startPos;
         // Find the middle element in the array
