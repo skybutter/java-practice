@@ -1,5 +1,10 @@
 package alan;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.*;
 
 /**
@@ -196,4 +201,20 @@ public class FindBlockLeastDistance {
         }
         return b;
     }
+
+    // Get json into List Map
+    private static String json = "[{\"gym\":false,\"school\":true,\"store\":false},{\"gym\":true,\"school\":false,\"store\":false},{\"gym\":true,\"school\":true,\"store\":false},{\"gym\":false,\"school\":true,\"store\":false},{\"gym\":false,\"school\":true,\"store\":true}]";
+    private static List<Map<String, Boolean>> getJsonAsListMap() {
+        List<Map<String, Boolean>> data = null;
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            data = mapper.readValue(json, new TypeReference<List<Map<String, Boolean>>>() {
+            });
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return data;
+    }
+
 }
