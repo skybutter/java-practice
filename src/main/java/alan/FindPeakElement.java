@@ -11,22 +11,27 @@ public class FindPeakElement {
 
     public static void main(String[] args) {
         System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr));
-        System.out.println("findPeakBinarySearchCopyArray Index=" + findPeakBinarySearchCopyArray(arr));
         System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr, 0 , arr.length-1));
         System.out.println("========");
         System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr1));
-        System.out.println("findPeakBinarySearchCopyArray Index=" + findPeakBinarySearchCopyArray(arr1));
         System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr1, 0 , arr1.length-1));
         System.out.println("========");
         System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr2));
-        System.out.println("findPeakBinarySearchCopyArray Index=" + findPeakBinarySearchCopyArray(arr2));
         System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr2, 0 , arr2.length-1));
+        System.out.println("========");
+        System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr3));
+        System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr3, 0 , arr3.length-1));
+        System.out.println("========");
+        System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr4));
+        System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr4, 0 , arr4.length-1));
         System.out.println("========");
     }
 
     static int arr[] = { 1, 3, 20, 4, 1, 0 };
     static int arr1[] = {5, 10, 20, 15};
     static int arr2[] = {10, 20, 15, 2, 23, 90, 67};
+    static int arr3[] = { 0, 1, 2, 3, 4};
+    static int arr4[] = { 0, 1, 2, 3};
 
     // Solution 1 : Linear Scan
     public static int findPeakLinearScan(int a[]) {
@@ -45,30 +50,7 @@ public class FindPeakElement {
         return -1;
     }
 
-    // Solution 2 : Binary Search Recursive (Divide and Conquer) copy array
-    public static int findPeakBinarySearchCopyArray(int a[]) {
-        // Find the middle element in the array
-        int m = a.length / 2;     // integer division always truncate (not round)
-        if (m<1) {
-            return 0;
-        }
-        if (a[m-1]>a[m]) { // Go left
-            // Copy array is not good, incur cost to time and space
-            int[] copied = new int[m];
-            System.arraycopy(a, 0, copied, 0, m);
-            return findPeakBinarySearchCopyArray(copied);
-        } else if (a[m+1]>a[m]) { // Go right
-            // Copy array is not good, incur cost to time and space
-            int[] copied = new int[a.length-m-1];
-            System.arraycopy(a, m+1, copied, 0, m);
-            return m + 1 + findPeakBinarySearchCopyArray(copied);
-        } else if (a[m] >= a[m-1] && a[m]>=a[m+1]) { // mid is peak
-            return m;
-        } else
-            return -1;
-    }
-
-    // Solution 3 : Binary Search Recursive (Divide and Conquer)
+    // Solution 2 : Binary Search Recursive (Divide and Conquer)
     public static int findPeakBinarySearch(int a[], int startPos, int endPos) {
         if (startPos == endPos)
             return startPos;
