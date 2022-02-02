@@ -80,13 +80,11 @@ public class FindPeakElement {
         int m = -1;
         while (eval) {
             if (startPos == endPos) return startPos;
-            m = (endPos-startPos)/2 + startPos;
+            m = (startPos+endPos)/2;
             if (a[m-1]>a[m]) { // Go left
                 endPos = m-1;
-                continue;
             } else if (a[m+1]>a[m]) { // Go right
                 startPos = m+1;
-                continue;
             } else if (a[m] >= a[m-1] && a[m]>=a[m+1]) { // mid is peak
                 eval = false;   // break
             } else {
