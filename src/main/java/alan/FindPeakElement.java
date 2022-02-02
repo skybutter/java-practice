@@ -12,18 +12,23 @@ public class FindPeakElement {
     public static void main(String[] args) {
         System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr));
         System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr, 0 , arr.length-1));
+        System.out.println("findPeakBinarySearchIter Index=" + findPeakBinarySearchIter(arr));
         System.out.println("========");
         System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr1));
         System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr1, 0 , arr1.length-1));
+        System.out.println("findPeakBinarySearchIter Index=" + findPeakBinarySearchIter(arr1));
         System.out.println("========");
         System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr2));
         System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr2, 0 , arr2.length-1));
+        System.out.println("findPeakBinarySearchIter Index=" + findPeakBinarySearchIter(arr2));
         System.out.println("========");
         System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr3));
         System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr3, 0 , arr3.length-1));
+        System.out.println("findPeakBinarySearchIter Index=" + findPeakBinarySearchIter(arr3));
         System.out.println("========");
         System.out.println("findPeakLinearScan Index=" + findPeakLinearScan(arr4));
         System.out.println("findPeakBinarySearch Index=" + findPeakBinarySearch(arr4, 0 , arr4.length-1));
+        System.out.println("findPeakBinarySearchIter Index=" + findPeakBinarySearchIter(arr4));
         System.out.println("========");
     }
 
@@ -64,6 +69,32 @@ public class FindPeakElement {
             return m;
         } else
             return -1;
+    }
+
+    // Solution 3 : Binary Search Iterative
+    public static int findPeakBinarySearchIter(int[] a) {
+        // Find the middle element in the array
+        boolean eval = true;
+        int startPos = 0;
+        int endPos = a.length-1;
+        int m = -1;
+        while (eval) {
+            if (startPos == endPos) return startPos;
+            m = (endPos-startPos)/2 + startPos;
+            if (a[m-1]>a[m]) { // Go left
+                endPos = m-1;
+                continue;
+            } else if (a[m+1]>a[m]) { // Go right
+                startPos = m+1;
+                continue;
+            } else if (a[m] >= a[m-1] && a[m]>=a[m+1]) { // mid is peak
+                eval = false;   // break
+            } else {
+                m = -1;
+                eval = false;   // break
+            }
+        }
+        return m;
     }
 
 }
